@@ -10,7 +10,7 @@ public class Aluno
 
     [Display(Name = "Nome do Aluno")]
     [Required(ErrorMessage = "{0} é obrigatório")]
-    [MaxLength(50, ErrorMessage = "{1} não pode exceder {0} caracteres!")]
+    [MaxLength(50, ErrorMessage = "{0} não pode exceder {1} caracteres!")]
     public string Nome { get; set; }
 
     public int MatriculaId { get; set; }

@@ -16,6 +16,7 @@ public class AlunoDao : IAlunoDao
     {
         return _context.Alunos
             .Include(aluno => aluno.Matricula)
+            .Include(aluno => aluno.Treinos)
             .ToList();
     }
 

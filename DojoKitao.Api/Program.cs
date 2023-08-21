@@ -12,6 +12,7 @@ builder.Services.AddDbContext<DojoKitaoContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DojoKitaoConnection")));
 
 builder.Services.AddTransient<IAlunoDao, AlunoDao>();
+builder.Services.AddTransient<IAulaDao, AulaDao>();
 builder.Services.AddTransient<IAdminService, DefaultAdminService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

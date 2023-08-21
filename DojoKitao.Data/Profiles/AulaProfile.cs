@@ -9,7 +9,7 @@ public class AulaProfile : Profile
     public AulaProfile()
     {
         CreateMap<CreateAulaDto, Aula>();
-        CreateMap<Aula, ReadAlunoDto>()
+        CreateMap<Aula, ReadAulaDto>()
             .ForMember(aulaDto => aulaDto.Treinos,
                 opt => opt.MapFrom(aula => aula.Treinos));
     }

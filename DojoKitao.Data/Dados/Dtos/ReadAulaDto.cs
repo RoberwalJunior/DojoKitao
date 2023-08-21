@@ -1,9 +1,8 @@
 ﻿namespace DojoKitao.Data.Dados.Dtos;
 
-public class ReadAlunoDto
+public class ReadAulaDto
 {
     public int Id { get; set; }
-    public string Nome { get; set; }
-    public ReadMatriculaDto Matricula { get; set; }
+    public DateTime Data { get; set; }
     public ICollection<ReadTreinoDto> Treinos { get; set; }
 }

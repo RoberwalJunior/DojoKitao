@@ -16,4 +16,6 @@ public class Aluno
     public int MatriculaId { get; set; }
 
     public virtual Matricula Matricula { get; set; }
+
+    public virtual ICollection<Treino> Treinos { get; set; }
 }

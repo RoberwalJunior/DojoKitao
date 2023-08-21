@@ -11,6 +11,8 @@ public class AlunoProfile : Profile
         CreateMap<CreateAlunoDto, Aluno>();
         CreateMap<Aluno, ReadAlunoDto>()
             .ForMember(alunoDto => alunoDto.Matricula,
-                opt => opt.MapFrom(aluno => aluno.Matricula));
+                opt => opt.MapFrom(aluno => aluno.Matricula))
+            .ForMember(alunoDto => alunoDto.Treinos,
+                opt => opt.MapFrom(aluno => aluno.Treinos));
     }
 }

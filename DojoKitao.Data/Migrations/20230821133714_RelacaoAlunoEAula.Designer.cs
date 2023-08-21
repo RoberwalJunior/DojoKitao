@@ -4,6 +4,7 @@ using DojoKitao.Data.Dados.Daos.EfCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DojoKitao.Data.Migrations
 {
     [DbContext(typeof(DojoKitaoContext))]
-    partial class DojoKitaoContextModelSnapshot : ModelSnapshot
+    [Migration("20230821133714_RelacaoAlunoEAula")]
+    partial class RelacaoAlunoEAula
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,7 +101,7 @@ namespace DojoKitao.Data.Migrations
                     b.HasOne("DojoKitao.Data.Models.Matricula", "Matricula")
                         .WithOne("Aluno")
                         .HasForeignKey("DojoKitao.Data.Models.Aluno", "MatriculaId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Matricula");

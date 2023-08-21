@@ -32,12 +32,6 @@ public class AulaDao : IAulaDao
         _context.SaveChanges();
     }
 
-    public void Alterar(Aula obj)
-    {
-        _context.Aulas.Update(obj);
-        _context.SaveChanges();
-    }
-
     public void Excluir(Aula obj)
     {
         _context.Aulas.Remove(obj);

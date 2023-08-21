@@ -24,18 +24,13 @@ public class AlunoDao : IAlunoDao
     {
         return _context.Alunos
             .Include(aluno => aluno.Matricula)
+            .Include(aluno => aluno.Treinos)
             .FirstOrDefault(aluno => aluno.Id == id);
     }
 
     public void Incluir(Aluno obj)
     {
         _context.Alunos.Add(obj);
-        _context.SaveChanges();
-    }
-
-    public void Alterar(Aluno obj)
-    {
-        _context.Alunos.Update(obj);
         _context.SaveChanges();
     }
 

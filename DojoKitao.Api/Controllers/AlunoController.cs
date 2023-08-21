@@ -8,23 +8,23 @@ namespace DojoKitao.Api.Controllers;
 [Route("[controller]")]
 public class AlunoController : ControllerBase
 {
-    private IAdminService _service;
+    private IDefaultAlunoService _alunoService;
 
-    public AlunoController(IAdminService service)
+    public AlunoController(IDefaultAlunoService alunoService)
     {
-        _service = service;
+        _alunoService = alunoService;
     }
 
     [HttpGet]
     public IEnumerable<ReadAlunoDto> RecuperarAlunos()
     {
-        return _service.BuscarTodosOsAlunos();
+        return _alunoService.BuscarTodosReadDto();
     }
 
     [HttpGet("{id}")]
     public IActionResult RecuperaAlunoPorId(int id)
     {
-        ReadAlunoDto? alunoDto = _service.ConsultarAlunoPorId(id);
+        ReadAlunoDto? alunoDto = _alunoService.ConsultarReadDtoPorId(id);
         if (alunoDto == null) return NotFound();
 
         return Ok(alunoDto);
@@ -33,7 +33,7 @@ public class AlunoController : ControllerBase
     [HttpPost]
     public IActionResult AdicionarAluno([FromBody] CreateAlunoDto alunoDto)
     {
-        var aluno = _service.CadastraAluno(alunoDto);
-        return CreatedAtAction(nameof(RecuperaAlunoPorId), new { id = aluno.Id }, alunoDto);
+        object routeValues = _alunoService.CadastrarCreateDto(alunoDto);
+        return CreatedAtAction(nameof(RecuperaAlunoPorId), routeValues, alunoDto);
     }
 }

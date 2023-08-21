@@ -13,7 +13,11 @@ builder.Services.AddDbContext<DojoKitaoContext>(options =>
 
 builder.Services.AddTransient<IAlunoDao, AlunoDao>();
 builder.Services.AddTransient<IAulaDao, AulaDao>();
-builder.Services.AddTransient<IAdminService, DefaultAdminService>();
+builder.Services.AddTransient<ITreinoDao, TreinoDao>();
+
+builder.Services.AddTransient<IDefaultAlunoService, DefaultAlunoService>();
+builder.Services.AddTransient<IDefaultAulaService, DefaultAulaService>();
+builder.Services.AddTransient<IDefaultTreinoService, DefaultTreinoService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

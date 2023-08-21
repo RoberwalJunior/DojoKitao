@@ -8,23 +8,23 @@ namespace DojoKitao.Api.Controllers;
 [Route("[controller]")]
 public class AulaController : ControllerBase
 {
-    private IAdminService _service;
+    private IDefaultAulaService _aulaService;
 
-    public AulaController(IAdminService service)
+    public AulaController(IDefaultAulaService service)
     {
-        _service = service;
+        _aulaService = service;
     }
 
     [HttpGet]
     public IEnumerable<ReadAulaDto> RecuperarAulas()
     {
-        return _service.BuscarTodasAsAulas();
+        return _aulaService.BuscarTodosReadDto();
     }
 
     [HttpGet("{id}")]
     public IActionResult RecuperaAulaPorId(int id)
     {
-        ReadAulaDto? aulaDto = _service.ConsultarAulaPorId(id);
+        ReadAulaDto? aulaDto = _aulaService.ConsultarReadDtoPorId(id);
         if (aulaDto == null) return NotFound();
 
         return Ok(aulaDto);
@@ -33,7 +33,7 @@ public class AulaController : ControllerBase
     [HttpPost]
     public IActionResult NovaAula([FromBody] CreateAulaDto aulaDto)
     {
-        var aula = _service.CadastraAula(aulaDto);
-        return CreatedAtAction(nameof(RecuperaAulaPorId), new { id = aula.Id }, aulaDto);
+        object routeValues = _aulaService.CadastrarCreateDto(aulaDto);
+        return CreatedAtAction(nameof(RecuperaAulaPorId), routeValues, aulaDto);
     }
 }

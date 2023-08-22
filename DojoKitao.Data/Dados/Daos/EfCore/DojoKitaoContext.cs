@@ -17,7 +17,7 @@ public class DojoKitaoContext : DbContext
 
         builder.Entity<Treino>()
             .HasOne(treino => treino.Aula)
-            .WithMany(cinema => cinema.Treinos)
+            .WithMany(aula => aula.Treinos)
             .HasForeignKey(treino => treino.AulaId);
 
         builder.Entity<Treino>()

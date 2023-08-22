@@ -2,6 +2,6 @@
 
 namespace DojoKitao.Data.Dados.Daos;
 
-public interface IAlunoDao : IQuery<Aluno>, ICommand<Aluno>
+public interface IAlunoDao : IQuery<Aluno>, ICommand<Aluno>, IDisposable
 {
 }

@@ -3,6 +3,6 @@
 public class ReadAulaDto
 {
     public int Id { get; set; }
-    public DateTime Data { get; set; }
-    public ICollection<ReadTreinoDto> Treinos { get; set; }
+    public string Data { get; set; }
+    public ICollection<string> Alunos { get; set; }
 }

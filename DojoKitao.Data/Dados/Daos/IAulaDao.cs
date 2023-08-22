@@ -2,6 +2,6 @@
 
 namespace DojoKitao.Data.Dados.Daos;
 
-public interface IAulaDao : IQuery<Aula>, ICommand<Aula>
+public interface IAulaDao : IQuery<Aula>, ICommand<Aula>, IDisposable
 {
 }

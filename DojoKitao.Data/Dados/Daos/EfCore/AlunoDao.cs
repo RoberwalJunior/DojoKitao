@@ -12,7 +12,7 @@ public class AlunoDao : IAlunoDao
         _context = context;
     }
 
-    public IEnumerable<Aluno> BuscarTodos()
+    private IEnumerable<Aluno> RecuperarLista()
     {
         return _context.Alunos
             .Include(aluno => aluno.Matricula)
@@ -20,11 +20,14 @@ public class AlunoDao : IAlunoDao
             .ToList();
     }
 
+    public IEnumerable<Aluno> BuscarTodos()
+    {
+        return RecuperarLista();
+    }
+
     public Aluno? BuscarPorId(int id)
     {
-        return _context.Alunos
-            .Include(aluno => aluno.Matricula)
-            .Include(aluno => aluno.Treinos)
+        return RecuperarLista()
             .FirstOrDefault(aluno => aluno.Id == id);
     }
 
@@ -38,5 +41,10 @@ public class AlunoDao : IAlunoDao
     {
         _context.Alunos.Remove(obj);
         _context.SaveChanges();
+    }
+
+    public void Dispose()
+    {
+        _context.Dispose();
     }
 }

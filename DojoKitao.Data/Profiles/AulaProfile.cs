@@ -10,7 +10,11 @@ public class AulaProfile : Profile
     {
         CreateMap<CreateAulaDto, Aula>();
         CreateMap<Aula, ReadAulaDto>()
-            .ForMember(aulaDto => aulaDto.Treinos,
-                opt => opt.MapFrom(aula => aula.Treinos));
+            .ForMember(aulaDto => aulaDto.Alunos,
+                opt => opt.MapFrom(aula => 
+                    aula.Treinos.Select(treino => treino.Aluno.Nome)))
+            .ForMember(aulaDto => aulaDto.Data,
+                opt => opt.MapFrom(aula => 
+                    aula.Data.ToString("dddd, dd/MM/yyyy HH:mm")));
     }
 }

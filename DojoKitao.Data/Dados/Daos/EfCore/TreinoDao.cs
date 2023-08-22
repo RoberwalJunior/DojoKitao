@@ -1,4 +1,5 @@
 ﻿using DojoKitao.Data.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DojoKitao.Data.Dados.Daos.EfCore;
 
@@ -11,14 +12,23 @@ public class TreinoDao : ITreinoDao
         _context = context;
     }
 
+    private IEnumerable<Treino> RecuperarLista()
+    {
+        return _context.Treinos
+            .Include(treino => treino.Aluno)
+            .Include(treino => treino.Aula)
+            .ToList();
+    }
+
     public IEnumerable<Treino> BuscarTodos()
     {
-        return _context.Treinos.ToList();
+        return RecuperarLista();
     }
 
     public Treino? ConsultarTreinoPorId(int alunoId, int aulaId)
     {
-        return _context.Treinos.FirstOrDefault(treino => 
+        return RecuperarLista()
+            .FirstOrDefault(treino => 
             treino.AlunoId == alunoId && treino.AulaId == aulaId);
     }
 
@@ -32,5 +42,10 @@ public class TreinoDao : ITreinoDao
     {
         _context.Treinos.Remove(obj);
         _context.SaveChanges();
+    }
+
+    public void Dispose()
+    {
+        _context.Dispose();
     }
 }
